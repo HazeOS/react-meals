@@ -2,6 +2,7 @@ import classes from './Header.module.scss';
 import {AppBar, Badge, Button, Toolbar, Typography} from "@material-ui/core";
 import {ShoppingCart} from "@material-ui/icons";
 
+//TODO создать модальное окно корзины
 const Header = () => {
   return (
     <AppBar className={classes.bar} position="static">
@@ -12,7 +13,7 @@ const Header = () => {
         <Button
           variant="contained"
           startIcon={<ShoppingCart/>}
-          size="large"
+          size="medium"
           color="default"
           className={classes.bar__cart}>
           Your cart
