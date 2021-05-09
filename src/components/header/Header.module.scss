@@ -1,0 +1,20 @@
+.bar {
+  flex-grow: 1;
+
+  &__title {
+    flex-grow: 10;
+  }
+
+  &__cart {
+    flex-grow: 0;
+  }
+
+  &__badge {
+    padding-left: 1.2rem;
+  }
+}
+
+
+
+
+
