@@ -1,6 +1,18 @@
 import classes from './MenuItem.module.scss';
-import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
-//import jpg from '../../../../../public/burger.jpg'
+import {
+  Badge,
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  IconButton,
+  Typography
+} from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 const MenuItem = (props) => {
   return (
@@ -11,7 +23,7 @@ const MenuItem = (props) => {
             className={classes.card__picture}
             component="img"
             image={props.image}
-            title="Contemplative Reptile"
+            title={props.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
@@ -23,12 +35,16 @@ const MenuItem = (props) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Share
+          <Button size="medium" color="primary">
+            Add to cart
           </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
+          <IconButton onClick={props.onIncrement} aria-label="add" color="primary">
+            <AddIcon/>
+          </IconButton>
+          <Badge color="primary" overlap="rectangle" showZero={true} badgeContent={props.amount}/>
+          <IconButton onClick={props.onDecrement} aria-label="delete" color="primary">
+            <RemoveIcon/>
+          </IconButton>
         </CardActions>
       </Card>
     </Grid>
