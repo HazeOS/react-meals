@@ -1,7 +1,6 @@
 import classes from './MenuItem.module.scss';
 import {
   Badge,
-  Button,
   Card,
   CardActionArea,
   CardActions,
@@ -35,9 +34,6 @@ const MenuItem = (props) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="medium" color="primary">
-            Add to cart
-          </Button>
           <IconButton onClick={props.onIncrement} aria-label="add" color="primary">
             <AddIcon/>
           </IconButton>
