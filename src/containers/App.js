@@ -19,14 +19,15 @@ const App = () => {
   }
 
   const onOrderHandler = () => {
-    //TODO логика заказа ("snapshot" state)
     setOpenCart(false);
+    console.table(cartContext.cartState);
+    //document.location.reload();
   }
 
 
   return (
     <div className={classes.App}>
-      <Header onOpenCart={onOpenCartHandler}/>
+      <Header cartContent={cartContext} onOpenCart={onOpenCartHandler}/>
       <Wrapper/>
       {openCart &&
       <CartDialog cartContent={cartContext} isOpen={openCart} onCloseCart={onCloseCartHandler}

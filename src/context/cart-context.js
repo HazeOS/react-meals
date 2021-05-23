@@ -1,4 +1,4 @@
-import React, {useReducer} from "react";
+import React, {useEffect, useReducer} from "react";
 import {findIndexById} from "../helpers/Helpers";
 
 const cartReducer = (state, action) => {
@@ -6,6 +6,7 @@ const cartReducer = (state, action) => {
     case 'INCREMENT':
       state.cartState[findIndexById(state.cartState, action.id)].amount++;
       return {...state, cartState: state.cartState};
+
     case 'DECREMENT':
       const amount = state.cartState[findIndexById(state.cartState, action.id)].amount;
       if (!amount) {
@@ -14,6 +15,21 @@ const cartReducer = (state, action) => {
         state.cartState[findIndexById(state.cartState, action.id)].amount--;
         return {...state, cartState: state.cartState};
       }
+
+    case 'TOTAL_PRICE':
+      let totalPrice = 0;
+      state.cartState.forEach(item => {
+        totalPrice += item.price * item.amount;
+      });
+      return {...state, totalPrice: totalPrice.toFixed(2)};
+
+    case 'TOTAL_AMOUNT':
+      let totalAmount = 0;
+      state.cartState.forEach(item => {
+        totalAmount += item.amount;
+      });
+      return {...state, totalAmount: totalAmount};
+
     default:
       return state;
   }
@@ -24,6 +40,10 @@ export const CartContext = React.createContext({
   incrementHandle: () => {
   },
   decrementHandle: () => {
+  },
+  totalPriceHandle: () => {
+  },
+  totalAmountHandle: () => {
   }
 });
 
@@ -36,6 +56,15 @@ export const CartContextProvider = (props) => {
   const decrementHandle = (id) => {
     dispatchCartEvent({type: 'DECREMENT', id: id});
   }
+
+  const totalPriceHandle = () => {
+    dispatchCartEvent({type: 'TOTAL_PRICE'});
+  }
+
+  const totalAmountHandle = () => {
+    dispatchCartEvent({type: 'TOTAL_AMOUNT'});
+  }
+
 
   const initState = {
     cartState: [
@@ -72,11 +101,26 @@ export const CartContextProvider = (props) => {
         amount: 0
       }
     ],
+    totalPrice: 0,
+    totalAmount: 0,
     incrementHandle: incrementHandle,
-    decrementHandle: decrementHandle
+    decrementHandle: decrementHandle,
+    totalPriceHandle: totalPriceHandle,
+    totalAmountHandle: totalAmountHandle
   }
 
   const [cartState, dispatchCartEvent] = useReducer(cartReducer, initState);
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      totalAmountHandle();
+      totalPriceHandle();
+    }, 100);
+
+    return () => {
+      clearTimeout(identifier);
+    };
+  }, [cartState]);
 
   return (
     <CartContext.Provider value={cartState}>
