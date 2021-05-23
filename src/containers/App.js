@@ -1,9 +1,9 @@
 import classes from './App.module.scss';
-import Header from "../components/header/Header";
-import Wrapper from "../components/wrapper/Wrapper";
+import Header from "../components/Header/Header";
+import Wrapper from "../components/Wrapper/Wrapper";
 import {useContext, useState} from "react";
-import CartDialog from "../UI/dialog/CartDialog";
-import {CartContext} from "../context/cart-context";
+import CartDialog from "../UI/CartDialog/CartDialog";
+import {CartContext} from "../context/CartContext";
 
 const App = () => {
   const [openCart, setOpenCart] = useState(false);
@@ -20,8 +20,10 @@ const App = () => {
 
   const onOrderHandler = () => {
     setOpenCart(false);
-    console.table(cartContext.cartState);
-    //document.location.reload();
+
+    console.table(cartContext.cartState.filter(item => {
+      return item.amount > 0;
+    }));
   }
 
 

@@ -1,6 +1,6 @@
 import {Container, Paper, Typography} from "@material-ui/core";
 import classes from "./Wrapper.module.scss";
-import Menu from "./menu/Menu";
+import Menu from "./Menu/Menu";
 
 const Wrapper = () => {
   return (

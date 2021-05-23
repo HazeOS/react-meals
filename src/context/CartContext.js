@@ -1,5 +1,9 @@
 import React, {useEffect, useReducer} from "react";
 import {findIndexById} from "../helpers/Helpers";
+import burgerImage from '../assets/dishes/burger.jpg';
+import saladImage from '../assets/dishes/salad.jpg';
+import schnitzelImage from '../assets/dishes/schnitzel.jpg';
+import sushiImage from '../assets/dishes/sushi.jpg';
 
 const cartReducer = (state, action) => {
   switch (action.type) {
@@ -72,7 +76,7 @@ export const CartContextProvider = (props) => {
         id: 'm1',
         name: 'Sushi',
         description: 'Finest fish and veggies',
-        image: './assets/dishes/sushi.jpg',
+        image: sushiImage,
         price: 22.99,
         amount: 0
       },
@@ -80,7 +84,7 @@ export const CartContextProvider = (props) => {
         id: 'm2',
         name: 'Schnitzel',
         description: 'A german specialty!',
-        image: './assets/dishes/schnitzel.jpg',
+        image: schnitzelImage,
         price: 16.5,
         amount: 0
       },
@@ -88,7 +92,7 @@ export const CartContextProvider = (props) => {
         id: 'm3',
         name: 'Barbecue Burger',
         description: 'American, raw, meaty',
-        image: './assets/dishes/burger.jpg',
+        image: burgerImage,
         price: 12.99,
         amount: 0
       },
@@ -96,7 +100,7 @@ export const CartContextProvider = (props) => {
         id: 'm4',
         name: 'Green Bowl',
         description: 'Healthy...and green...',
-        image: './assets/dishes/salad.jpg',
+        image: saladImage,
         price: 18.99,
         amount: 0
       }

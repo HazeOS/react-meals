@@ -1,8 +1,8 @@
 import classes from './Menu.module.scss';
-import MenuItem from "./menuItem/MenuItem";
+import MenuItem from "./MenuItem/MenuItem";
 import {Grid} from "@material-ui/core";
 import {useContext} from "react";
-import {CartContext} from "../../../context/cart-context";
+import {CartContext} from "../../../context/CartContext";
 
 const Menu = () => {
   const cartContext = useContext(CartContext);
